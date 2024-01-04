@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcription Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+</head>
+<body>
+    <div class="header">
+        <h1>YouTube Video Transcription</h1>
+    </div>
+    <div class="searchBar">
+        <form method="post">
+            <label for="url">Enter a YouTube video URL:</label>
+            <input type="text" name="url" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="transcript">
+        {% if duration %}
+            <p>Video length: {{ duration }} seconds</p>
+            <p>Transcription time: {{ seconds }} seconds</p>
+
+            <h2>Transcription:</h2>
+            {% for sentence in sentences %}
+                <p>{{ sentence }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No transcription available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
